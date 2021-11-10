@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dist/css/index.css" />
+    <script src="./dist/js/vditor.js"></script>
+    <script src="./dist/js/vue.min.js"></script>
+    <title>编辑器</title>
+</head>
+
+<body>
+
+    <div id="mask" v-if="mask">
+        <div id="form">
+            相关文章：<br>
+            <span v-for="title in articles">
+                <input type="checkbox" name="about" id="about" v-model="cuarticles" :value="title">{{title}}
+            </span>
+            <br>
+            分类：<br>
+            <span v-for="type in types">
+                <input type="checkbox" name="type" id="type" v-model="cutypes" :value="type">{{type}}
+            </span>
+            <br>
+            模板：<br>
+            <span v-for="template in templates">
+                <input type="radio" name="template" id="template" :value="template" v-model="cutemplate">{{template}}
+            </span>
+            <br>
+            标题：<br>
+            <input type="text" name="title" id="title" v-model="title"><br>
+            图标：<br>
+            <input type="text" name="icon" id="icon" v-model="icon"><br>
+            封面：<br>
+            <input type="text" name="face" id="face" v-model="face"><br>
+            <button @click="submit">提交</button><span v-if="msg">{{msg}}<button @click="mask=false">返回</button></span>
+        </div>
+    </div>
+    <div id="a"></div>
+    <script src="./dist/js/index.js" defer="defer"></script>
+    <script>
+        let app = new Vue({
+            el: '#mask',
+            data: {
+                articles: [],
+                cuarticles: [],
+                templates: [],
+                cutemplate: '',
+                types:[],
+                cutypes:[],
+                title: '',
+                icon: '',
+                mask: false,
+                content: {},
+                msg:'',
+                face:''
+            },
+            methods: {
+                getConfigs() {
+                    fetch('http://localhost:2333/api/configs').then(res => res.json()).then(res => {
+                        res.articles.forEach(e => {
+                            this.articles.push(e)
+                        });
+                        res.templates.forEach(e => {
+                            this.templates.push(e)
+                        });
+                    })
+                },
+                submit() {
+                    console.log(this.content)
+                    fetch('http://localhost:2333/api/addArticle', {
+                        headers: { 'content-type': 'text/plain' },
+                        method: 'POST',
+                        body: JSON.stringify({
+                            icon: this.icon,
+                            title: this.title,
+                            about: this.cuarticles,
+                            template: this.cutemplate,
+                            ...this.content,
+                            face:this.face,
+                            md:vditor.getValue(),
+                            type:this.cutypes
+                        })
+
+                    }).then(res => res.text()).then(res=>{
+                        this.msg=res
+                    })
+                }
+            }
+        })
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body,
+        #a {
+            height: 100vh;
+        }
+
+        #mask {
+            z-index: 100;
+            position: fixed;
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        #form {
+            background-color: rgb(47, 54, 61);
+            padding: 50px;
+            width: 40%;
+            margin-left: 30%;
+            margin-top: 10%;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px black;
+        }
+    </style>
+</body>
+
+</html>

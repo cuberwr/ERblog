@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="./dist/js/vue.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <el-row v-for="article in articles" class="line">
+            <span class="title">
+                {{article}}
+            </span>
+            <span class="buttons">
+                <el-button type="primary" icon="el-icon-edit" circle @click="toEdit(article)"></el-button>
+                <el-button type="danger" icon="el-icon-delete" circle @click="del(article)"></el-button>
+                <el-button type="success" plain @click="view(article)">查看</el-button>
+            </span>
+        </el-row>
+        <el-row class="line">
+            <el-button type="success" plain @click="add()" class="add">新增文章</el-button>
+        </el-row>
+    </div>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                articles: []
+            },
+            created() {
+                fetch('http://localhost:2333/api/configs').then(res => res.json()).then(res => {
+                    res.articles.forEach(e => {
+                        this.articles.push(e)
+                    });
+                    /*                     res.templates.forEach(e => {
+                                            this.templates.push(e)
+                                        }); */
+                })
+            },
+            methods: {
+                toEdit(md) {
+                    window.location.href = 'http://localhost:2333/editor/edit.html?title=' + md
+                },
+                del(md) {
+                    console.log('delete')
+                    fetch('http://localhost:2333/api/deleteArticle?title='+md).then(res => res.text()).then(res => {
+                        if (res === 'ok') {
+                            fetch('http://localhost:2333/api/configs').then(res => res.json()).then(res => {
+                                console.log(this)
+                                for(let i in this.articles){
+                                    this.articles.pop()
+                                }
+                                res.articles.forEach(e => {
+                                    this.articles.push(e)
+                                });
+                            })
+                        }else{
+                            alert(res)
+                        }
+
+                    })
+                },
+                view(page) {
+                    window.location.href = 'http://localhost:2333/webpages/article-' + page + '.html'
+                },
+                add() {
+                    window.location.href = 'http://localhost:2333/editor/edit.html?title='
+                }
+            }
+        })
+    </script>
+    <style>
+        #app {
+            width: 50%;
+            margin-left: 25%;
+            background-color: rgb(47, 54, 61);
+            border-radius: 10px;
+        }
+
+        .title {
+            margin: 20px;
+            font-size: 20px;
+            font-weight: bolder;
+            display: inline-block;
+            color: blanchedalmond;
+        }
+
+        .line {
+            position: relative;
+        }
+
+        .buttons {
+            position: absolute;
+            right: 30px;
+            top: 15px;
+        }
+
+        .add {
+            width: 30%;
+            margin-left: 35%;
+            margin-top: 30px;
+        }
+    </style>
+</body>
+
+</html>

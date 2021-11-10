@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王润的Blog</title>
+</head>
+
+<body>
+    <aside>
+        <div id="me" class="dark-card">
+            <div class="avatar">
+                <img src="./img/avatar.png" alt="王润的头像" width="100%"><br>
+                <h3>王 润</h3>
+            </div>
+            <div id="found-me">
+
+            </div>
+
+        </div>
+        <div id="nav" class="dark-card">
+            <a href="./tech.html">学技术</a>
+            <hr>
+            <a href="./photo.html">随手拍</a>
+            <hr>
+            <a href="./i-have-8-hands.html">打游戏</a>
+            <hr>
+            <a href="./but-only-2-fingers.html">玩魔方</a>
+            <hr>
+            <a href="./godlike.html">小妙招</a>
+            <hr>
+            <a href="./toolman.html">工具箱</a>
+            <hr>
+            <a href="./play-with-fish.html">有意思</a>
+        </div>
+    </aside>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <article>
+        <!-- article -->
+            <div class="article">
+                <img src="" alt="face" width="100%">
+                <div>
+                    <h2>测试</h2>
+                </div>
+            </div>
+    </article>   
+       
+       
+       
+       
+       
+       
+       
+       
+    
+    <div class="about"></div>
+    <style>
+        html {
+            background-image: url(https://c.wallhere.com/photos/56/a5/mushroom_forest_macro_blurred_depth_of_field_glowing_photography-1987267.jpg!d);
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        body{
+            display: flex;
+            justify-content: space-between;
+        }
+        hr{
+            border-color: grey;
+            margin: 0;
+        }
+        aside {
+            display: flex;
+            flex-direction: column;
+            width: 20%;
+        }
+
+        .dark-card {
+            border-radius: 10px;
+            background-color: rgb(47, 54, 61);
+            color: floralwhite;
+            margin-bottom: 10px;
+        }
+
+        .avatar {
+            width: 30%;
+            margin-left: 35%;
+            text-align: center;
+        }
+
+        #nav {
+            text-align: center;
+        }
+
+        #nav>a {
+            display: block;
+            transition: all .3s;
+            border-radius: 10px;
+            margin: 0;
+            font-size: 23px;
+            font-weight: bolder;
+            padding: 15px;
+        }
+
+        #nav>a:hover {
+            background-color: grey;
+            box-shadow: -2px -2px 5px rgb(172, 167, 167), 2px 2px 5px #696868
+        }
+
+        #nav>a:active {
+            box-shadow: inset 1px 1px 2px #717172, inset -1px -1px 2px rgb(92, 91, 91)
+        }
+
+        article{
+            width: 50%;
+            overflow-y: scroll;
+            height: 98vh;
+        }
+        .article{
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 40vh;
+            margin-bottom: 10px;
+        }
+
+        .article>div{
+            height: 40%;
+            width: 100%;
+            position: absolute;
+            bottom: 0px;
+            background-color: rgba(0,0,0,0.5);
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+        .article>div>h2{
+            color: whitesmoke;
+            padding: 0;
+        }
+        .about{
+            width: 20%;
+        }
+        a,
+        a:link,
+        a:visited,
+        a:hover,
+        a:active {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 1px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: rgba(0,200, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(47, 54, 61,0.3);
+        }
+    </style>
+</body>
+
+</html>

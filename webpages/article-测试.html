@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href=""><link rel="bookmark" href="">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/vditor@3.8.7/dist/index.css"/>
+<script src="https://cdn.jsdelivr.net/npm/vditor@3.8.7/dist/js/i18n/zh_CN.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vditor@3.8.7/dist/method.min.js"></script>
+    <title>测试</title>
+</head>
+
+<body>
+    <div class="vditor-reset" id="preview">
+        <h2>js基础</h2>
+<ol>
+<li>变量类型与判断</li>
+<li>事件循环</li>
+<li>原型与原型链</li>
+<li>闭包与作用域</li>
+</ol>
+
+    </div>
+    <div id="about">
+        <h2>相关文章</h2>
+        <a href="./aaa.html">title</a>
+        <!-- about -->
+    </div>
+    <script>
+    const previewElement = document.getElementById('preview')
+    Vditor.setContentTheme('dark', 'https://cdn.jsdelivr.net/npm/vditor@3.8.7/dist/css/content-theme');
+    Vditor.codeRender(previewElement);
+    Vditor.highlightRender({"enable":true,"lineNumber":true,"style":"native"}, previewElement, 'https://cdn.jsdelivr.net/npm/vditor@3.8.7');
+    Vditor.mathRender(previewElement, {
+        cdn: 'https://cdn.jsdelivr.net/npm/vditor@3.8.7',
+        math: {"engine":"KaTeX","inlineDigit":false,"macros":{}},
+    });
+    Vditor.mermaidRender(previewElement, 'https://cdn.jsdelivr.net/npm/vditor@3.8.7', 'dark');
+    Vditor.flowchartRender(previewElement, 'https://cdn.jsdelivr.net/npm/vditor@3.8.7');
+    Vditor.graphvizRender(previewElement, 'https://cdn.jsdelivr.net/npm/vditor@3.8.7');
+    Vditor.chartRender(previewElement, 'https://cdn.jsdelivr.net/npm/vditor@3.8.7', 'dark');
+    Vditor.mindmapRender(previewElement, 'https://cdn.jsdelivr.net/npm/vditor@3.8.7', 'dark');
+    Vditor.abcRender(previewElement, 'https://cdn.jsdelivr.net/npm/vditor@3.8.7');
+    Vditor.mediaRender(previewElement);
+    Vditor.speechRender(previewElement);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vditor@3.8.7/dist/js/icons/ant.js"></script>
+    <style>
+        html {
+            background-image: url(https://c.wallhere.com/photos/56/a5/mushroom_forest_macro_blurred_depth_of_field_glowing_photography-1987267.jpg!d);
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        #preview {
+            margin-left: 20%;
+            width: 60%;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgb(47, 54, 61);
+        }
+
+        #preview {
+            height: 95vh;
+            overflow-y: scroll;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 1px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: dimgray;
+            background-image: -webkit-linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.2) 25%,
+                    transparent 25%,
+                    transparent 50%,
+                    rgba(255, 255, 255, 0.2) 50%,
+                    rgba(255, 255, 255, 0.2) 75%,
+                    transparent 75%,
+                    transparent);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgb(47, 54, 61);
+        }
+
+        body {
+            display: flex;
+        }
+    </style>
+</body>
+
+</html>
